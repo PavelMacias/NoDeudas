@@ -14,13 +14,13 @@ app.set('port',4000); //fijo el puerto por que se enlasara la app
 app.set('views', path.join(__dirname,'views'));
 //agregamos las rutas:
 app.engine('.hbs', exphbs({ //usando esta funcion
-    defaultLayout: "navbar", //nombre del layout
+    defaultLayout: "main", //nombre del layout
     layoutsDir: path.join(app.get('views'),'layouts'), //ruta del archivo
     extnames:'.hbs', //extencion de los archivos
     helpers: require('./lib/handlebars') 
 
 }));
-app.set('view engine', 'hbs'); //arranca
+app.set('view engine', '.hbs'); //arranca
 
 //middlewares
 app.use(morgan('dev'));
@@ -28,11 +28,16 @@ app.use(express.urlencoded({extended: false})); // hace que solo admita tipos de
 app.use(express.json()); // permite resivir archivos tipo json
 
 //Glovales
+app.use((req,res,next)=>{ next(); });
 
 //Routes
-app.use(require('./routes'))
+app.use(require('./routes'));
+app.use(require('./routes/authentication'));
+app.use('/',require('./routes/links'));
+//MAS RUTAS a liks se le agrega el prefijo /links para facilitar su posterior uso 
 
 //Public
+app.use(express.static(path.join(__dirname,'public')));
 
 //Starting server
 app.listen(app.get('port'), ()=>{
