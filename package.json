@@ -1,0 +1,19 @@
+{
+  "name": "nodeudas",
+  "version": "1.0.0",
+  "description": "Proyecto final 4to",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PavelMacias/NoDeudas.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PavelMacias/NoDeudas/issues"
+  },
+  "homepage": "https://github.com/PavelMacias/NoDeudas#readme"
+}
