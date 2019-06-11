@@ -3,6 +3,7 @@ module.exports = {
     database: {
         host: 'localhost',
         user: 'root',
-        databse: 'nodeudas'
+        port: '3307',
+        database: 'nodeudas'
     }
 }

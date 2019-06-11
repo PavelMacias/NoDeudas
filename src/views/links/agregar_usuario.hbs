@@ -1,0 +1,79 @@
+<div class="">
+    <div class="container h-100">
+
+        <div class="row h-100 justify-content-center align-items-center backuser">
+            <div class="col-md-10 col-xs-12 col-center">
+                <form action="agregar_usuario" method="POST">
+
+                    <h1><img class="img-fluid" src="../img/icono.png"> Registrar Usuario</h1><br>
+
+                    <div class="form-row">
+
+                        <div class="form-group col-md-5">
+                            
+                            <input type="text" class="form-control input-form" name="fld_name" id="inputName"
+                                placeholder="Ingresa tu nombre...">
+                        </div>
+
+                        <div class="form-group col-md-5">
+                            
+                            <input type="text" class="form-control input-form" id="inputLastname" name="fld_lastname"
+                                placeholder="Ingresa tus apellidos...">
+                        </div>
+
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-8">
+                           
+                            <input type="email" class="form-control input-form " id="inputEmail" name="fld_email"
+                                placeholder="user_name@example.com">
+                        </div>
+
+                        <div class="form-group col-md-3">
+                           
+                            <input type="date" class="form-control input-form" id="inputDate" placeholder="FecNac." name="fld_borndate">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+
+                        <div class="form-group col-md-3">
+                            
+                            <select id="inputSex" class="form-control input-select" name="fld_sex">
+                                <option selected>Genero...</option>
+                                <option value="Hombre">Hombre</option>
+                                <option value="Mujer">Mujer</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-md-5">    
+                            <input type="tel" class="form-control input-form" id="inputTel" placeholder="Ingresa tu Telefono..." name="fld_tel">
+                        </div>
+
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                      
+                            <input type="password" class="form-control input-form" id="inputPassword" name="fld_password"
+                                placeholder="Nueva Contraseña...">
+                        </div>
+
+                        <div class="form-group col-md-4">
+                         
+                            <input type="password" class="form-control input-form" id="inputRpassword" name="Rpassword"
+                                placeholder="Repetir Contraseña...">
+                        </div>
+
+                    </div>
+
+
+                    <button type="submit" class="btn btn-primary">Registrar</button>
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+</div>

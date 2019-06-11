@@ -16,7 +16,8 @@ app.set('views', path.join(__dirname,'views'));
 app.engine('.hbs', exphbs({ //usando esta funcion
     defaultLayout: "main", //nombre del layout
     layoutsDir: path.join(app.get('views'),'layouts'), //ruta del archivo
-    extnames:'.hbs', //extencion de los archivos
+    partialsDir: path.join(app.get('views'),'partials'),
+    extname:'.hbs', //extencion de los archivos
     helpers: require('./lib/handlebars') 
 
 }));
