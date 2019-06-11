@@ -21,20 +21,24 @@ router.post('/generar_pago',(req,res) =>{
 router.post('/realizar_cobro',(req,res) =>{
     res.send.apply("resivido")
 });
-router.post('/agregar_usuario',(req,res) =>{
-    const {fld_name, fld_lasname, fld_email, fld_borndate, fld_sex, fld_password, Rpassword} =  req.body;
+router.post('/agregar_usuario', async (req,res) =>{
+    const {fld_name, fld_lastname, fld_email, fld_borndate, fld_tel,fld_password, Rpassword} =  req.body;
     const newLink = {
         fld_name,
-        fld_lasname, 
+        fld_lastname, 
+        fld_tel,
         fld_email,
         fld_borndate,
-        fld_sex,
         fld_password, 
         fld_id_creditor: '1'
     };
-    pool.query('INSERT INTO tbl_debtor set ?',[newLink]);  
-    console.log(newLink);
-    res.send("Resived");
+    await pool.query('INSERT INTO tbl_debtor set ?',[newLink]);  
+    res.send("NICE")
+});
+router.get('/links', async (req,res) =>{
+    const links = await pool.query('SELECT* FROM tbl_debtor');
+    console.log(links);
+    res.render('links/list',{links});
 });
 
 module.exports = router;
