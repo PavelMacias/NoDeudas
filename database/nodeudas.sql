@@ -96,7 +96,10 @@ DELIMITER $$
 		IF (var_tipe = 1) 
 		THEN
 			UPDATE tbl_debtor SET tbl_debtor.fld_deb = (tbl_debtor.fld_deb + var_amout) WHERE tbl_debtor.fld_id = var_id_debtor;
+		ELSE
+			UPDATE tbl_debtor SET tbl_debtor.fld_deb = (tbl_debtor.fld_deb - var_amout) WHERE tbl_debtor.fld_id = var_id_debtor;
 		END IF;
+
 	END$$
 DELIMITER ;
 */
