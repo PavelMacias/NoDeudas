@@ -1,0 +1,109 @@
+<div class="container p-4">
+
+    <div class="row h-100 justify-content-center justify-items-center mb-4 backuser">
+        <div class="col-md-8 col-xs-12">
+            <h1><img class="img-fluid" src="../img/icono.png"> Inicio</h1><br><br>
+            <article>
+
+                <form action="" method="">
+                    <section>
+                        <div class="form-row">
+                            <div class="form-group col-xs-2">
+                                <label class="label-filter" for="inputFrom">Desde:</label>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <input type="date" class="form-control input-form-filter" id="inputFrom">
+                            </div>
+
+                            <div class="form-group col-xs-2 offset-md-3">
+                                <label class="label-filter" for="inputTo">Hasta:</label>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <input type="date" class="form-control input-form-filter" id="inputTo">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-xs-1">
+                                <label for="inputDeb" class="label-filter">Ordenar:</label>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="pay-debt" id="inputPay"
+                                        value="pay">
+                                    <label class="form-check-label label-filter" for="inputPay">Pagos</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="pay-debt" id="inputDebt"
+                                        value="debt">
+                                    <label class="form-check-label label-filter " for="inputDebt">Deudas</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="pay-debt" id="inputBoth"
+                                        value="both">
+                                    <label class="form-check-label label-filter " for="inputBoth">Ambos</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-3">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="asc-desc" id="inputAsc"
+                                        value="ASC">
+                                    <label class="form-check-label label-filter" for="inputAsc">ASC</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="asc-desc" id="inputDesc"
+                                        value="DESC">
+                                    <label class="form-check-label label-filter " for="inputDesc">DESC</label>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Buscar</button>
+                    </section>
+                </form>
+
+            </article>
+        </div>
+    </div>
+
+
+
+    <div class="row h-100 justify-content-center justify-items-center mb-4">
+        <div class="col-md-6">
+            <div class="card text-center back-card">
+                <div class="card-header">Listado</div>
+                <div class="car-body">
+                    
+                    <table class="table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Telefono</th>
+                                <th scope="col">Correo</th>
+                                <th scope="col">Deuda</th>                                
+                            </tr>
+                        </thead>
+                        {{#each links}}
+                        <tbody>
+                            <tr>
+                                <th scope="row">{{fld_id}}</th>
+                                <td>{{fld_name}}</td>
+                                <td>{{fld_tel}}</td>
+                                <td>{{fld_email}}</td>
+                                <td>$ {{fld_deb}}</td>
+                            </tr>
+                        </tbody>
+                        {{/each}}
+                    </table>
+                    
+                </div>
+                <div class="card-footer text-muted">
+                    2 days ago
+                </div>
+
+            </div>
+        </div>
+        
+    </div>
+</div>
