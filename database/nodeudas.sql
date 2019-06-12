@@ -81,3 +81,22 @@ FOREIGN KEY
    (fld_id_creditor) 
 REFERENCES 
    tbl_creditor (fld_id);/*
+
+/*triggers
+DELIMITER $$
+	CREATE OR REPLACE TRIGGER updateDeb BEFORE INSERT ON tbl_repository FOR EACH ROW
+	BEGIN
+		DECLARE var_amout DECIMAL(11,2) DEFAULT 0;
+		DECLARE var_id_debtor INT DEFAULT 0;
+		DECLARE var_tipe INT DEFAULT 0;
+		
+		SET var_amout = new.fld_amout;
+		SET var_id_debtor = new.fld_id_debtor;
+		SET var_tipe = new.fld_tipe;		
+		IF (var_tipe = 1) 
+		THEN
+			UPDATE tbl_debtor SET tbl_debtor.fld_deb = (tbl_debtor.fld_deb + var_amout) WHERE tbl_debtor.fld_id = var_id_debtor;
+		END IF;
+	END$$
+DELIMITER ;
+*/

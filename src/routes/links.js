@@ -3,23 +3,51 @@ const router = express.Router();
 
 const pool = require('../database');
 //---------get routes-----
-router.get('/registrar_pago',(req,res) =>{
-    res.render('links/registrar_pago')
+//---------rutas principales-----
+router.get('/registrar_pago',async (req,res) =>{
+    const links = await pool.query('SELECT fld_id FROM tbl_debtor');
+    res.render('links/registrar_pago', {links})
 });
-router.get('/realizar_cobro',(req,res) =>{
-    res.render('links/realizar_cobro')
+router.get('/realizar_cobro',async (req,res) =>{
+    const links = await pool.query('SELECT fld_id FROM tbl_debtor');
+    res.render('links/realizar_cobro',{links})
 });
 router.get('/agregar_usuario',(req,res) =>{
     res.render('links/agregar_usuario')
 });
+//---------/rutas principales-----
 
-//---------Post routes-----
-router.post('/generar_pago',(req,res) =>{
-    res.send.apply("Resivido")
+//---------GETS from DB-----
+router.get('/inicio', async (req,res) =>{
+    const links = await pool.query('SELECT* FROM tbl_debtor');
+    res.render('links/list',{links});
 });
 
-router.post('/realizar_cobro',(req,res) =>{
-    res.send.apply("resivido")
+//---------Post routes-----
+router.post('/registrar_pago', async(req,res) =>{
+    const{fld_id_debtor,fld_amout} = req.body;
+    const newLink ={
+        fld_id_creditor: 1,
+        fld_id_debtor,
+        fld_amout,
+        fld_date: '2019-08-11',
+        fld_tipe: 0
+    }
+    await pool.query('INSERT INTO tbl_repository set ?', [newLink]);
+    res.redirect('/registrar_pago');
+});
+
+router.post('/realizar_cobro', async(req,res) =>{
+    const {fld_id_debtor, fld_amout} = req.body;
+    const  newLink ={
+        fld_id_creditor: 1,
+        fld_id_debtor,
+        fld_amout,
+        fld_date: '2019-08-11',
+        fld_tipe: 1
+    } 
+    await pool.query('INSERT INTO tbl_repository set ?', [newLink]); 
+    res.redirect('/realizar_cobro');
 });
 router.post('/agregar_usuario', async (req,res) =>{
     const {fld_name, fld_lastname, fld_email, fld_borndate, fld_tel,fld_password, Rpassword} =  req.body;
@@ -35,10 +63,6 @@ router.post('/agregar_usuario', async (req,res) =>{
     await pool.query('INSERT INTO tbl_debtor set ?',[newLink]);  
     res.send("NICE")
 });
-router.get('/links', async (req,res) =>{
-    const links = await pool.query('SELECT* FROM tbl_debtor');
-    console.log(links);
-    res.render('links/list',{links});
-});
+
 
 module.exports = router;
