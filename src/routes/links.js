@@ -4,10 +4,6 @@ const router = express.Router();
 const pool = require('../database');
 //---------get routes-----
 //---------rutas principales-----
-router.get('/login',(req,res) =>{
-    
-    res.render('links/login')
-});
 router.get('/registrar_pago',async (req,res) =>{
     const links = await pool.query('SELECT fld_id FROM tbl_debtor');
     res.render('links/registrar_pago', {links})

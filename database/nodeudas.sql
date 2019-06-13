@@ -99,7 +99,6 @@ DELIMITER $$
 		ELSE
 			UPDATE tbl_debtor SET tbl_debtor.fld_deb = (tbl_debtor.fld_deb - var_amout) WHERE tbl_debtor.fld_id = var_id_debtor;
 		END IF;
-
 	END$$
 DELIMITER ;
 */

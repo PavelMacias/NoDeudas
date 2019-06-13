@@ -13,7 +13,6 @@ body{
     transition: all .15s ease;  
 }
 .my-content{
-    background-color:#6C8F9D;
     width: 100%;
     height: 100vh;   
 }
@@ -30,7 +29,7 @@ body{
     margin-top: 12vh;
     padding-top: 5vh;
     text-align: center;
-    background-image: url(login.jpg);
+    background-image: url(../img/login.jpg);
     background-color:rgba(0,0,0,0.7);
     background-blend-mode: darken;
     box-shadow: 4px 9px 34px -4px rgba(0,0,0,0.65);
