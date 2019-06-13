@@ -6,10 +6,12 @@ const flash = require('connect-flash');
 const session = require('express-session');
 const MySQLStore = require('express-mysql-session'); //este modulo es para almacenar la session en mysql
 const { database } = require('./keys');
+const passport = require('passport');
 //Hasta qui solo llamo las dependencias
 
 //initializations
 const app = express();
+require('./lib/passport')
 
 //Settings
 app.set('port', 4000); //fijo el puerto por que se enlasara la app
@@ -39,6 +41,8 @@ app.use(flash());
 app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: false })); // hace que solo admita tipos de archivos normales
 app.use(express.json());// permite resivir archivos tipo json
+app.use(passport.initialize());//aqui se inicia passport pero hay que crear una session
+app.use(passport.session());//aqui se crea la session para que passport funcione
 
 
 //Glovales
