@@ -4,6 +4,10 @@ const router = express.Router();
 const pool = require('../database');
 //---------get routes-----
 //---------rutas principales-----
+router.get('/login',(req,res) =>{
+    
+    res.render('links/login')
+});
 router.get('/registrar_pago',async (req,res) =>{
     const links = await pool.query('SELECT fld_id FROM tbl_debtor');
     res.render('links/registrar_pago', {links})
@@ -19,7 +23,7 @@ router.get('/agregar_usuario',(req,res) =>{
 
 //---------GETS from DB-----
 router.get('/inicio', async (req,res) =>{
-    const links = await pool.query('SELECT* FROM tbl_debtor');
+    const links = await pool.query('SELECT* FROM tbl_debtor ORDER BY fld_deb DESC');
     res.render('links/list',{links});
 });
 
@@ -34,6 +38,7 @@ router.post('/registrar_pago', async(req,res) =>{
         fld_tipe: 0
     }
     await pool.query('INSERT INTO tbl_repository set ?', [newLink]);
+    req.flash('success','Pago realizado correctamente');
     res.redirect('/registrar_pago');
 });
 
@@ -47,6 +52,7 @@ router.post('/realizar_cobro', async(req,res) =>{
         fld_tipe: 1
     } 
     await pool.query('INSERT INTO tbl_repository set ?', [newLink]); 
+    req.flash('success','Se ha cobrado ' + newLink.fld_amout + "al deudor...");
     res.redirect('/realizar_cobro');
 });
 router.post('/agregar_usuario', async (req,res) =>{
@@ -58,10 +64,12 @@ router.post('/agregar_usuario', async (req,res) =>{
         fld_email,
         fld_borndate,
         fld_password, 
-        fld_id_creditor: '1'
+        fld_id_creditor: '1',
+        fld_deb: 0
     };
     await pool.query('INSERT INTO tbl_debtor set ?',[newLink]);  
-    res.send("NICE")
+    req.flash('success','Nuevo usuario creado correctamente  ; )');
+    res.redirect('/agregar_usuario')
 });
 
 
