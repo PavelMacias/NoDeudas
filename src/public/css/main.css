@@ -13,6 +13,7 @@ body{
     transition: all .15s ease;  
 }
 .my-content{
+    background-color:  #6C8F9D;
     width: 100%;
     height: 100vh;   
 }

@@ -47,7 +47,9 @@ app.use(passport.session());//aqui se crea la session para que passport funcione
 
 //Glovales
 app.use((req, res, next) => {
-    app.locals.success = req.flash('success')
+    app.locals.success = req.flash('success');
+    app.locals.error = req.flash('error');
+    app.locals.user = req.user;
     next();
 });
 

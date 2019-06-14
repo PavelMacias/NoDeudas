@@ -2,46 +2,36 @@
     <div class="row h-100 justify-content-center justify-items-center backuser">
         <div class="col-md-8 col-xs-12">
             <article>
-                <h1><img class="img-fluid" src="../img/icono.png"> Generar Nuevo Cobro</h1><br><br>
-                <form action="realizar_cobro" method="POST">
+
+                <form action="/realizar_cobro" method="POST" >
+                    <h1><img class="img-fluid" src="../img/icono.png"> Aquien vamos a cobrar?</h1><br><br>
                     <section>
                         <div class="form-row">
 
-                            <div class="form-group col-md-6">
-                                <label for="inputDeb"> </label>
-                                <select id="inputDeb" class="form-control input-select" name="fld_id_debtor">
-                                    <option selected>Aquien vas a cobrar?</option>
-                                    {{#each links}}
-                                    <option selected>{{fld_id}}</option>
+                            <div class="form-group col-md-7 formsection">
+                                
+                                <select id="inputDeb" class="form-control input-select" name="fld_id_debtor" >
+                                    
+                                     {{#each links}}
+                                        <option selected>{{fld_id}}</option>
                                     {{/each}}
-
+                                    <option value="all">Selecionar todo</option>
+                                    <option selected disabled>Selecciona al deudor</option>
                                 </select>
                             </div>
 
-                            <div class="form-group col-md-3">
-                                <input type="number" class="form-control input-form" id="inputAmout" placeholder="Cantidad..." name="fld_amout">
+                            <div class="form-group col-md-4">
+                                
+                                <input type="number" class="form-control input-form" id="inputAmount" name="fld_amout" placeholder="Total...">
                             </div>
 
-                            <!--<div class="form-group col-md-2">
-                                <label for="inputInt">Interes(%)</label>
-                                <input type="number" class="form-control input-form" id="inputInt">
-                            </div>-->
                             <button type="submit" class="btn btn-primary">Agregar cargo</button>
                             <br>
-                        </div>
-                    </section>
-                    <br>
-                    <section>
-                        <div class="form-row  h-100 justify-content-center align-items-center">
-                            <div class="form-group col-md-4 col-center">
-                                <input type="text" class="form-control input-form" id="input" placeholder="Total...">
-                            </div>
                         </div>
                     </section>
                 </form>
 
             </article>
         </div>
-
     </div>
 </div>
