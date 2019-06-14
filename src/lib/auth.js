@@ -21,7 +21,14 @@ module.exports = {
         if(helpers.userType(user)){
             return next()
         }else{
-            return res.send("fallo")
+            return res.redirect('/usuario')
+        }
+    },
+    userDebtor(user,res,next){
+        if(!helpers.userType(user)){
+            return next()
+        }else{
+            return res.redirect("/inicio")
         }
     }
 

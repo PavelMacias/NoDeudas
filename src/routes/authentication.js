@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const passport = require('passport');
 const pool = require('../database')
-const {isLoggedIn,isNotLoggedIn} = require('../lib/auth');
+const {isLoggedIn,isNotLoggedIn,userAdmin} = require('../lib/auth');
 //routes GET to authenticate 
 //GET login
 router.get('/login',isNotLoggedIn,(req,res)=>{
@@ -14,7 +14,7 @@ router.get('/logout',(req,res)=>{
     res.redirect('/login')
 })
 //GET add user
-router.get('/agregar_usuario',(req,res) =>{
+router.get('/agregar_usuario',isLoggedIn,userAdmin,(req,res) =>{
     res.render('auth/agregar_usuario')
 });
 

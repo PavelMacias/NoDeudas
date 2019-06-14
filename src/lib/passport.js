@@ -10,8 +10,11 @@ passport.use('local.login',new LocalStrategy({
     passwordField: 'fld_password',
     passReqToCallback: true
 },  async (req,fld_id,fld_password,done) =>{
-    const rows = await pool.query('SELECT* FROM tbl_creditor WHERE fld_id = ?',[fld_id]);
-    console.log(rows);
+    let rows = await pool.query('SELECT* FROM tbl_creditor WHERE fld_id = ?',[fld_id]);
+    if(rows.length==0){
+        rows = await pool.query('SELECT* FROM tbl_debtor WHERE fld_id = ?',[fld_id]);
+        console.log(rows);
+    }
     if(rows.length > 0){
         const user = rows[0];
         const validPassword = await helpers.matchPassword(fld_password,user.fld_passWord);
@@ -21,7 +24,6 @@ passport.use('local.login',new LocalStrategy({
         done(null,false,req.flash('error','Contraseña incorrecta'));
     }else{
         done(null,false,req.flash('error','Usuario no encontrado'));
-
     }
 }));
 
@@ -56,6 +58,9 @@ passport.serializeUser((user,done)=>{ //para guardar el usuario a la sesion
 
 passport.deserializeUser(async(fld_id,done)=>{
     
-    const rows = await pool.query('SELECT* FROM tbl_creditor WHERE fld_id = ?',[fld_id])
+    let rows = await pool.query('SELECT* FROM tbl_creditor WHERE fld_id = ?',[fld_id]);
+    if(rows.length == 0){
+         rows = await pool.query('SELECT* FROM tbl_debtor WHERE fld_id = ?',[fld_id])
+    }
     done(null,rows[0]);
 });

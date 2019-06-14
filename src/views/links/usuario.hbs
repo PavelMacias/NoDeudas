@@ -1,0 +1,30 @@
+<div class="container h-100">
+    <div class="row h-100 justify-content-center justify-items-center backuser">
+        <div class="col-md-8 col-xs-12">
+            <h2><img class="img-fluid" src="../img/icono.png">Hola ... estos son tus movimientos</h2><br><br>
+            <h3>Deuda total: {{send.total}}</h3>
+            <table class="table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">monto</th>
+                                <th scope="col">fecha</th>
+                                <th scope="col">categoria</th>                               
+                            </tr>
+                        </thead>
+                        {{#each send.links}}
+                        <tbody>
+                            <tr>
+                                <th scope="row">{{fld_id}}</th>
+                                <td>{{fld_amout}}</td>
+                                <td>{{fld_date}}</td>
+                                <td>{{fld_tipe}}</td>
+                            </tr>
+                        </tbody> 
+                        {{/each}}
+                    </table>
+        </div>
+        
+    </div>
+
+</div>

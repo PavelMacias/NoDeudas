@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const {isLoggedIn,userAdmin} = require('../lib/auth');
+const {isLoggedIn,userAdmin,userDebtor} = require('../lib/auth');
 
 const pool = require('../database');
 //---------get routes-----
@@ -16,6 +16,24 @@ router.get('/realizar_cobro',isLoggedIn,  userAdmin,async (req,res) =>{
 router.get('/inicio', isLoggedIn, userAdmin, async(req,res) =>{
     const links = await pool.query('SELECT* FROM tbl_debtor ORDER BY fld_deb DESC');
     res.render('links/inicio',{links});
+});
+router.get('/usuario',isLoggedIn,userDebtor,async(req,res)=>{
+    const links = await pool.query('SELECT* FROM tbl_repository WHERE fld_id_debtor = ?',[req.user.fld_id]);
+    
+     for(let i = 0; i < links.length; i++){
+        if(links[i].fld_tipe == 1){
+            links[i].fld_tipe = "Cobro";
+        }else{
+            links[i].fld_tipe = "Pago";
+        }
+ 
+    }
+    const amout = await pool.query('SELECT fld_deb FROM tbl_debtor WHERE fld_id = ?',[req.user.fld_id]);
+    const total = amout[0].fld_deb
+    const send = {links,total}
+    
+    res.render('links/usuario',{send});
+    
 });
 //---------/rutas principales-----
 
@@ -51,19 +69,18 @@ router.post('/realizar_cobro', async(req,res) =>{
             }
             await pool.query('INSERT INTO tbl_repository set ?', [all]); 
         }
-        req.flash('success','Se ha cobrado ' + fld_amout + "todos los deudores");
+        req.flash('success','Se ha cobrado $' + fld_amout + " a todos los deudores");
         
     }else{
-        const  newLink ={
-            fld_id_creditor: 1,
+         const  newLink ={
+            fld_id_creditor: req.user.fld_id,
             fld_id_debtor,
             fld_amout,
             fld_date: '2019-08-11',
             fld_tipe: 1
         } 
-        await pool.query('INSERT INTO tbl_repository set ?', [newLink]); 
-        req.flash('success','Se ha cobrado ' + fld_amout + "al deudor");
-
+        await pool.query('INSERT INTO tbl_repository set ?', [newLink]);  
+        req.flash('success','Se ha cobrado $' + fld_amout + " al deudor");
     }
     res.redirect('/realizar_cobro'); 
 });

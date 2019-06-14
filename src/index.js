@@ -56,7 +56,7 @@ app.use((req, res, next) => {
 //Routes
 app.use(require('./routes'));
 app.use(require('./routes/authentication'));
-app.use('/', require('./routes/links'));
+app.use('/',require('./routes/links'));
 //MAS RUTAS a liks se le agrega el prefijo /links para facilitar su posterior uso 
 
 //Public
