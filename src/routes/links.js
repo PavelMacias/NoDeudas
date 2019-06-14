@@ -23,14 +23,14 @@ router.get('/inicio', isLoggedIn, userAdmin, async(req,res) =>{
 router.post('/registrar_pago', async(req,res) =>{
     const{fld_id_debtor,fld_amout} = req.body;
     const newLink ={
-        fld_id_creditor: 1,
+        fld_id_creditor: req.user.fld_id,
         fld_id_debtor,
         fld_amout,
         fld_date: '2019-08-11',
         fld_tipe: 0
     }
     await pool.query('INSERT INTO tbl_repository set ?', [newLink]);
-    req.flash('success','Pago realizado correctamente');
+    req.flash('success','Se agregó un pago de: ', newLink.fld_amout,'del usuario ID: ',fld_id_debtor);
     res.redirect('/registrar_pago');
 });
 
