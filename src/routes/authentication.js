@@ -29,7 +29,6 @@ router.post('/login',(req,res,next)=>{
     })(req,res,next);
 
 });
-
 //POST Add user
 router.post('/agregar_usuario',passport.authenticate('local.adduser',{ //en este objeto se define a donde se dirigira si falla o si todo es correcto
         succesRedirect:'/agregar_usuario',
