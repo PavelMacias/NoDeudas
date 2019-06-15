@@ -14,7 +14,7 @@ router.get('/logout',(req,res)=>{
     res.redirect('/login')
 })
 //GET add user
-router.get('/agregar_usuario',isLoggedIn,userAdmin,(req,res) =>{
+router.get('/agregar_usuario',/*isLoggedIn,userAdmin,*/(req,res) =>{
     res.render('auth/agregar_usuario')
 });
 
