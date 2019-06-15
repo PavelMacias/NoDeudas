@@ -15,7 +15,7 @@ router.get('/realizar_cobro',isLoggedIn,  userAdmin,async (req,res) =>{
 });
 router.get('/inicio', isLoggedIn, userAdmin, async(req,res) =>{
     const links = await pool.query('SELECT* FROM tbl_debtor ORDER BY fld_deb DESC');
-    res.render('../index.js',{links});
+    res.render('links/inicio',{links});
 });
 router.get('/usuario',isLoggedIn,userDebtor,async(req,res)=>{
     const links = await pool.query('SELECT* FROM tbl_repository WHERE fld_id_debtor = ?',[req.user.fld_id]);
