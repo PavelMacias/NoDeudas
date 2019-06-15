@@ -14,7 +14,7 @@ router.get('/realizar_cobro',isLoggedIn,  userAdmin,async (req,res) =>{
     res.render('links/realizar_cobro',{links})
 });
 router.get('/inicio', isLoggedIn, userAdmin, async(req,res) =>{
-    const links = await pool.query('SELECT* FROM tbl_repository WHERE fld_id_debtor = ?',[req.user.fld_id]);
+    const links = await pool.query('SELECT* FROM tbl_repository WHERE fld_id_creditor = ?',[req.user.fld_id]);
     
      for(let i = 0; i < links.length; i++){
         if(links[i].fld_tipe == 1){
