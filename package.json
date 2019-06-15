@@ -7,6 +7,7 @@
     "dev": "nodemon src/",
     "start": "node src/index.js"
   },
+  "engines" : { "node" : "v11.13.0" },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/PavelMacias/NoDeudas.git"
