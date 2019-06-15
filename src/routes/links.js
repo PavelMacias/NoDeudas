@@ -44,7 +44,7 @@ router.post('/registrar_pago', async(req,res) =>{
         fld_id_creditor: req.user.fld_id,
         fld_id_debtor,
         fld_amout,
-        fld_date: '2019-08-11',
+        fld_date: 'now()',
         fld_tipe: 0
     }
     await pool.query('INSERT INTO tbl_repository set ?', [newLink]);
@@ -68,10 +68,8 @@ router.post('/realizar_cobro', async(req,res) =>{
                 fld_date: 'NOW()',
                 fld_tipe: 1
             }
-            const result = await pool.query('INSERT INTO tbl_repository set ?', [all]); 
-            
-            const id = result.insertId;
-            //await pool.query("UPDATE tbl_repository SET fld_date = DATE_FORMAT(,'%Y%m%d%H%i%s') WHERE fld_id = ?", [id]); 
+            await pool.query('INSERT INTO tbl_repository set ?', [all]);
+            await pool.query('UPDATE tbl_debtor SET tbl_debtor.fld_deb = (tbl_debtor.fld_deb + ?', [var_amout],') WHERE tbl_debtor.fld_id = ?', [all.fld_id_debtor]); 
         }
         req.flash('success','Se ha cobrado $' + fld_amout + " a todos los deudores");
         
