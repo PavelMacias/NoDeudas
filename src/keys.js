@@ -4,7 +4,6 @@ module.exports = {
         host: 'us-cdbr-iron-east-02.cleardb.net',
         user: 'ba372fb5826eb1',
         password:'3fb8a4d1',
-        port: '3308',
         database: 'heroku_42e044772db6a2a'
     }
 }
