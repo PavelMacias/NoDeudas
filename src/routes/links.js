@@ -69,7 +69,7 @@ router.post('/realizar_cobro', async(req,res) =>{
                 fld_tipe: 1
             }
             await pool.query('INSERT INTO tbl_repository set ?', [all]);
-            await pool.query('UPDATE tbl_debtor SET tbl_debtor.fld_deb = (tbl_debtor.fld_deb + ?', [var_amout],') WHERE tbl_debtor.fld_id = ?', [all.fld_id_debtor]); 
+            
         }
         req.flash('success','Se ha cobrado $' + fld_amout + " a todos los deudores");
         
