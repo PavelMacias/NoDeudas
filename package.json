@@ -7,7 +7,6 @@
     "dev": "nodemon src/",
     "start": "node src/index.js"
   },
-  "engines" : { "node" : "v11.13.0" },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/PavelMacias/NoDeudas.git"
@@ -19,7 +18,7 @@
   },
   "homepage": "https://github.com/PavelMacias/NoDeudas#readme",
   "dependencies": {
-    "bcrypt": "^3.0.6",
+    "bcrypt": "^3.0.0",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.4",
     "express": "^4.17.1",
