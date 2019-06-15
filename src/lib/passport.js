@@ -43,7 +43,7 @@ passport.use('local.adduser', new LocalStrategy({
         fld_email,
         fld_borndate,
         fld_password,
-        fld_id_creditor: req.user.fld_id,
+        fld_id_creditor: '55555'/* req.user.fld_id */,
         fld_deb: 0
     };
     newUser.fld_password = await helpers.encryptPassword(newUser.fld_password)
