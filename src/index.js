@@ -14,7 +14,7 @@ const app = express();
 require('./lib/passport')
 
 //Settings
-app.set('port', 4000); //fijo el puerto por que se enlasara la app
+app.set('port',process.env.PORT || 4000); //fijo el puerto por que se enlasara la app
 //Fijo la ruta de views con app.set(nombre de la carpeta, y la ruta combinada
 // con path.join(__dirnmae(Const que regresa la ruta actual, 'npmbre de otra carpeta a fusionar') ))
 app.set('views', path.join(__dirname, 'views'));
