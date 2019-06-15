@@ -15,7 +15,7 @@ router.get('/realizar_cobro',isLoggedIn,  userAdmin,async (req,res) =>{
 });
 router.get('/inicio', isLoggedIn, userAdmin, async(req,res) =>{
     const links = await pool.query('SELECT* FROM tbl_debtor ORDER BY fld_deb DESC');
-    res.render('links/inicio',{links});
+    res.render('../index.js',{links});
 });
 router.get('/usuario',isLoggedIn,userDebtor,async(req,res)=>{
     const links = await pool.query('SELECT* FROM tbl_repository WHERE fld_id_debtor = ?',[req.user.fld_id]);
@@ -61,13 +61,17 @@ router.post('/realizar_cobro', async(req,res) =>{
         const y = number[0].n;
         for(let i = 0 ; i< y; i++){
             const all = {
+            
                 fld_id_creditor: req.user.fld_id,
                 fld_id_debtor: allUsers[i].fld_id,
                 fld_amout,
-                fld_date: '2019-08-11',
+                fld_date: 'NOW()',
                 fld_tipe: 1
             }
-            await pool.query('INSERT INTO tbl_repository set ?', [all]); 
+            const result = await pool.query('INSERT INTO tbl_repository set ?', [all]); 
+            
+            const id = result.insertId;
+            //await pool.query("UPDATE tbl_repository SET fld_date = DATE_FORMAT(,'%Y%m%d%H%i%s') WHERE fld_id = ?", [id]); 
         }
         req.flash('success','Se ha cobrado $' + fld_amout + " a todos los deudores");
         
@@ -84,7 +88,5 @@ router.post('/realizar_cobro', async(req,res) =>{
     }
     res.redirect('/realizar_cobro'); 
 });
-
-
 
 module.exports = router;
