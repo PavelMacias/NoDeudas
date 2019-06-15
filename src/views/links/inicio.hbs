@@ -78,22 +78,20 @@
                         <thead class="thead-dark">
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">Telefono</th>
-                                <th scope="col">Correo</th>
-                                <th scope="col">Deuda</th>                                
+                                <th scope="col">monto</th>
+                                <th scope="col">fecha</th>
+                                <th scope="col">categoria</th>                               
                             </tr>
                         </thead>
                         {{#each links}}
                         <tbody>
                             <tr>
                                 <th scope="row">{{fld_id}}</th>
-                                <td>{{fld_name}}</td>
-                                <td>{{fld_tel}}</td>
-                                <td>{{fld_email}}</td>
-                                <td>$ {{fld_deb}}</td>
+                                <td>{{fld_amout}}</td>
+                                <td>{{fld_date}}</td>
+                                <td>{{fld_tipe}}</td>
                             </tr>
-                        </tbody>
+                        </tbody> 
                         {{/each}}
                     </table>
                     
