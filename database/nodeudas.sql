@@ -33,7 +33,6 @@ CREATE TABLE tbl_creditor(
 	fld_lastName		VARCHAR(40),
 	fld_email			VARCHAR(50),
 	fld_passWord		VARCHAR(60),
-	fld_deb				DECIMAL(15,2),
 	PRIMARY KEY (fld_id)
 );
 /*----------------------------------------------------------------*/
@@ -45,6 +44,7 @@ CREATE TABLE tbl_debtor(
 	fld_bornDate		DATE,
 	fld_passWord		VARCHAR(60),
 	fld_id_creditor	INT NOT NULL,
+	fld_deb				DECIMAL(15,2),
 	PRIMARY KEY (fld_id)
 );
 /*----------------------------------------------------------------*/
