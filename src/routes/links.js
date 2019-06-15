@@ -89,6 +89,4 @@ router.post('/realizar_cobro', async(req,res) =>{
     res.redirect('/realizar_cobro'); 
 });
 
-
-
 module.exports = router;
