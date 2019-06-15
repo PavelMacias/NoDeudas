@@ -44,7 +44,7 @@ router.post('/registrar_pago', async(req,res) =>{
         fld_id_creditor: req.user.fld_id,
         fld_id_debtor,
         fld_amout,
-        fld_date: 'now()',
+        fld_date: '2019-10-10',
         fld_tipe: 0
     }
     await pool.query('INSERT INTO tbl_repository set ?', [newLink]);
@@ -78,7 +78,7 @@ router.post('/realizar_cobro', async(req,res) =>{
             fld_id_creditor: req.user.fld_id,
             fld_id_debtor,
             fld_amout,
-            fld_date: '2019-08-11',
+            fld_date: 'NOW()',
             fld_tipe: 1
         } 
         await pool.query('INSERT INTO tbl_repository set ?', [newLink]);  
